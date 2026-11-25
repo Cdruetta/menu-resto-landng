@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Menu Resto · La carta digital de tu restaurante</title>
+<meta name="description" content="Carta digital con QR para restaurantes: rápida, actualizable al instante y pensada para el celular de tus clientes.">
+<meta property="og:title" content="Menu Resto · Carta digital para restaurantes">
+<meta property="og:description" content="Carta digital con QR: rápida, actualizable al instante y pensada para el celular de tus clientes.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%BD%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf6ef;
+  --surface:#ffffff;
+  --text:#1e241c;
+  --muted:#5f6b57;
+  --accent:#3f6f4a;
+  --accent2:#c26a3d;
+  --accent-text:#ffffff;
+  --line:#e3dccd;
+  --shadow:0 10px 30px rgba(40,60,35,.10);
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12160f;--surface:#1b2117;--text:#eef2e6;--muted:#a8b39c;
+    --accent:#7fc08a;--accent2:#e8986a;--accent-text:#0e1a10;--line:#2c3529;
+    --shadow:0 10px 30px rgba(0,0,0,.45);color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12160f;--surface:#1b2117;--text:#eef2e6;--muted:#a8b39c;
+  --accent:#7fc08a;--accent2:#e8986a;--accent-text:#0e1a10;--line:#2c3529;
+  --shadow:0 10px 30px rgba(0,0,0,.45);color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{font-family:Fraunces,Georgia,serif;font-weight:800;font-size:1.25rem;text-decoration:none}
+.logo span{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-text);
+  padding:13px 24px;border-radius:999px;font:inherit;font-weight:600;
+  text-decoration:none;border:0;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible{
+  outline:3px solid var(--accent2);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--text);border:1.5px solid var(--line);box-shadow:none}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:48px 0 72px}
+.pill{display:inline-block;
+  background:rgba(63,111,74,.14);
+  background:color-mix(in srgb,var(--accent) 14%,transparent);
+  color:var(--accent);padding:6px 14px;border-radius:999px;
+  font-size:.85rem;font-weight:600;margin-bottom:18px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:520px;margin:18px 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.phone{background:var(--surface);border:1px solid var(--line);border-radius:36px;
+  padding:16px;box-shadow:var(--shadow);max-width:320px;margin:0 auto}
+.phone .bar{height:6px;width:70px;background:var(--line);border-radius:9px;margin:0 auto 14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1px solid var(--line);background:transparent;color:var(--text);
+  padding:6px 14px;border-radius:999px;cursor:pointer;font:inherit;font-size:.85rem}
+.tab.on{background:var(--accent);color:var(--accent-text);border-color:var(--accent)}
+.item{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.item b{display:block;font-weight:600}
+.item small{color:var(--muted)}
+.price{font-weight:600;color:var(--accent2);white-space:nowrap}
+section{padding:64px 0}
+.title{text-align:center;max-width:620px;margin:0 auto 40px}
+.title h2{font-size:clamp(1.7rem,3.5vw,2.4rem)}
+.title p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:26px;box-shadow:var(--shadow)}
+.card .ic{font-size:1.8rem}
+.card h3{font-size:1.2rem;margin:10px 0 6px}
+.card p{margin:0;color:var(--muted)}
+.steps{counter-reset:s}
+.steps .card::before{counter-increment:s;content:counter(s);display:grid;place-items:center;
+  width:38px;height:38px;border-radius:50%;background:var(--accent);
+  color:var(--accent-text);font-weight:700;margin-bottom:12px}
+.band{background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;border-radius:28px;padding:48px 28px;text-align:center}
+.band h2{font-size:clamp(1.7rem,3.5vw,2.4rem);color:#fff}
+.band p{max-width:520px;margin:12px auto 24px;opacity:.95}
+.band .btn{background:#fff;color:#1e241c}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:16px 20px;margin-bottom:12px}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--muted);margin:10px 0 0}
+footer{padding:32px 0 40px;color:var(--muted);text-align:center;font-size:.9rem}
+@media(max-width:800px){
+  .hero{grid-template-columns:1fr;padding-top:24px}
+  .hero p{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn{transition:none}
+  .btn:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a class="logo" href="#">Menu<span>Resto</span></a>
+  <a class="btn ghost" href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20mi%20carta%20digital%20para%20mi%20restaurante" target="_blank" rel="noopener">Quiero mi carta</a>
+</nav>
+
+<main>
+<header class="hero">
+  <div>
+    <span class="pill">🍽️ Carta digital para restaurantes</span>
+    <h1>Tu carta, siempre al día. <em>En la mesa de cada cliente.</em></h1>
+    <p>Olvidate de imprimir menús cada vez que cambia un precio. Menu Resto le da a tu local una carta digital rápida, ordenada y lista para abrir desde el celular.</p>
+    <div class="cta">
+      <a class="btn" href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20mi%20carta%20digital%20para%20mi%20restaurante" target="_blank" rel="noopener">Pedir mi carta digital</a>
+      <a class="btn ghost" href="#funciones">Ver cómo funciona</a>
+    </div>
+  </div>
+
+  <div class="phone" role="region" aria-label="Demo de la carta digital">
+    <div class="bar" aria-hidden="true"></div>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Categorías del menú"></div>
+    <div id="list" role="tabpanel" aria-live="polite"></div>
+  </div>
+</header>
+
+<section id="funciones">
+  <div class="title"><h2>Todo lo que tu carta necesita</h2><p>Simple para vos, cómoda para tus clientes.</p></div>
+  <div class="grid">
+    <div class="card"><div class="ic" aria-hidden="true">📱</div><h3>Pensada para el celular</h3><p>Diseño responsive que se ve perfecto en cualquier pantalla, sin descargar nada.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">🗂️</div><h3>Categorías claras</h3><p>Entradas, platos, postres y bebidas organizados para encontrar todo en segundos.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">⚡</div><h3>Carga ultrarrápida</h3><p>Construida con tecnología web moderna para que nadie espere con hambre.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">✏️</div><h3>Cambios al instante</h3><p>Actualizá precios y platos cuando quieras, sin reimprimir ni gastar de más.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">🔳</div><h3>Acceso por QR</h3><p>Un código en cada mesa y tus clientes ven la carta al momento.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">🎨</div><h3>Con la identidad de tu local</h3><p>Colores, logo y estilo que reflejan tu marca.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="title"><h2>Listo en tres pasos</h2></div>
+  <div class="grid steps">
+    <div class="card"><h3>Cargás tu menú</h3><p>Platos, descripciones y precios organizados por categoría.</p></div>
+    <div class="card"><h3>Generás tu QR</h3><p>Lo imprimís o lo mostrás en mesas, vidriera y redes.</p></div>
+    <div class="card"><h3>Tus clientes eligen</h3><p>Abren la carta desde su celular y piden con confianza.</p></div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="band">
+    <h2>Llevá tu restaurante al próximo nivel</h2>
+    <p>Una carta moderna transmite profesionalismo y mejora la experiencia desde el primer vistazo.</p>
+    <a class="btn" href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20mi%20carta%20digital%20para%20mi%20restaurante" target="_blank" rel="noopener">Pedir mi carta digital</a>
+  </div>
+</section>
+
+<section>
+  <div class="title"><h2>Preguntas frecuentes</h2></div>
+  <div style="max-width:720px;margin:0 auto">
+    <details><summary>¿Mis clientes tienen que instalar algo?</summary><p>No. Escanean el QR y la carta se abre directo en el navegador.</p></details>
+    <details><summary>¿Puedo cambiar precios cuando quiera?</summary><p>Sí, la carta se actualiza sin depender de impresiones.</p></details>
+    <details><summary>¿Se adapta a mi marca?</summary><p>Sí, podemos ajustar colores, logo y estilo a tu local.</p></details>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Menu Resto · Hecho con ♥ para la gastronomía</footer>
+</div>
+<script>
+var MENU={
+  "Entradas":[["Provoleta a la parrilla","Con orégano y tomate seco","$6.500"],["Empanadas (x3)","Carne cortada a cuchillo","$5.800"]],
+  "Platos":[["Milanesa napolitana","Con papas rústicas","$12.900"],["Ravioles de ricota","Salsa fileto casera","$11.200"]],
+  "Postres":[["Flan casero","Dulce de leche y crema","$4.900"],["Volcán de chocolate","Con helado de vainilla","$6.300"]],
+  "Bebidas":[["Limonada con menta","Jarra 1 litro","$4.200"],["Cerveza artesanal","Pinta 500 ml","$4.800"]]
+};
+var tabs=document.getElementById("tabs"),list=document.getElementById("list");
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]})}
+function show(c){
+  Array.prototype.forEach.call(tabs.children,function(b){
+    var on=b.dataset.cat===c;
+    b.classList.toggle("on",on);
+    b.setAttribute("aria-selected",on?"true":"false");
+  });
+  list.innerHTML=MENU[c].map(function(i){
+    return '<div class="item"><div><b>'+esc(i[0])+'</b><small>'+esc(i[1])+'</small></div>'+
+           '<span class="price">'+esc(i[2])+'</span></div>';
+  }).join("");
+}
+Object.keys(MENU).forEach(function(c){
+  var b=document.createElement("button");
+  b.type="button";
+  b.className="tab";
+  b.textContent=c;
+  b.dataset.cat=c;
+  b.setAttribute("role","tab");
+  b.setAttribute("aria-selected","false");
+  b.onclick=function(){show(c)};
+  tabs.appendChild(b);
+});
+show("Entradas");
+</script>
+</body>
+</html>
